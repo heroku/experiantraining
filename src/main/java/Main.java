@@ -20,7 +20,7 @@ public class Main {
     port(Integer.valueOf(System.getenv("PORT")));
     staticFileLocation("/public");
 
-    get("/hello", (req, res) -> "Hello Experian Interactive");
+    get("/hello", (req, res) -> "Hello Experian Interactive service");
 
     get("/", (request, response) -> {
             Map<String, Object> attributes = new HashMap<>();
