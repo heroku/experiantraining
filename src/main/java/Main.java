@@ -1,17 +1,20 @@
-import java.sql.*;
-import java.util.HashMap;
+import static spark.Spark.get;
+import static spark.SparkBase.port;
+import static spark.SparkBase.staticFileLocation;
+
+import java.sql.Connection;
+import java.sql.Date;
+import java.sql.ResultSet;
+import java.sql.SQLException;
+import java.sql.Statement;
 import java.util.ArrayList;
+import java.util.HashMap;
 import java.util.Map;
 
-import java.net.URI;
-import java.net.URISyntaxException;
-
-import static spark.Spark.*;
-import spark.template.freemarker.FreeMarkerEngine;
-import spark.ModelAndView;
-import static spark.Spark.get;
-
 import com.heroku.sdk.jdbc.DatabaseUrl;
+
+import spark.ModelAndView;
+import spark.template.freemarker.FreeMarkerEngine;
 
 public class Main {
 
@@ -21,7 +24,7 @@ public class Main {
     port(Integer.valueOf(System.getenv("PORT")));
     staticFileLocation("/public");
 
-    get("/hello", (req, res) -> "Hello Experian from Scott");
+    get("/hello", (req, res) -> ("Hello Experian from Scott, today is: " + new Date(System.currentTimeMillis())));
 
     get("/", (request, response) -> {
             Map<String, Object> attributes = new HashMap<>();
